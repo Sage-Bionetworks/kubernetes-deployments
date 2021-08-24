@@ -1,0 +1,15 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: projectlive
+spec:
+  schedule: "0 8 * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: projectlive nf
+            image: andrewelamb/projectlive_nf_files:1.0
+            imagePullPolicy: IfNotPresent
+          restartPolicy: OnFailure
