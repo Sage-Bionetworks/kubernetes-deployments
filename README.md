@@ -12,8 +12,9 @@ conda env create -f environment.yml
     ```
     kubectl get svc
     kubectl create secret generic tyu-syn-pat --from-literal=synapse_auth_token=....
-    kubectl create -f projectlive_nf_cronjob.yaml
+    kubectl apply -f projectlive_nf_cronjob.yaml
     kubectl get cronjob projectlive-nf
+    kubectl get jobs --watch
     kubectl get pods --selector=job-name=projectlive-nf-27164915
     kubectl logs projectlive-nf-27164915-6h75l
     kubectl delete cronjob projectlive-nf
