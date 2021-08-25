@@ -3,7 +3,7 @@ kind: CronJob
 metadata:
   name: projectlive-nf
 spec:
-  schedule: "*/5 * * * *"
+  schedule: "0 8 * * *"
   jobTemplate:
     spec:
       template:
