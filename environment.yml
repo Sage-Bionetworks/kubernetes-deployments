@@ -1,0 +1,30 @@
+name: aws
+channels:
+  - defaults
+dependencies:
+  - ca-certificates=2020.7.22=0
+  - certifi=2020.6.20=py37_0
+  - libcxx=10.0.0=1
+  - libedit=3.1.20191231=h1de35cc_1
+  - libffi=3.3=hb1e8313_2
+  - ncurses=6.2=h0a44026_1
+  - openssl=1.1.1g=h1de35cc_0
+  - pip=20.2.2=py37_0
+  - python=3.7.9=h26836e1_0
+  - readline=8.0=h1de35cc_0
+  - setuptools=49.6.0=py37_0
+  - sqlite=3.33.0=hffcf06c_0
+  - tk=8.6.10=hb0a8c7a_0
+  - wheel=0.35.1=py_0
+  - xz=5.2.5=h1de35cc_0
+  - zlib=1.2.11=h1de35cc_3
+  - pip:
+    - awscli-saml==2.0.0
+    - boto3==1.14.63
+    - botocore==1.17.63
+    - docutils==0.15.2
+    - jmespath==0.10.0
+    - python-dateutil==2.8.1
+    - s3transfer==0.3.3
+    - six==1.15.0
+    - urllib3==1.25.10

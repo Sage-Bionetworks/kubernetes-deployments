@@ -1,5 +1,9 @@
 # kubernetes_deployments
-Kubernetes deployments on ibc EKS cluster
+Kubernetes deployments on `ibc` EKS cluster.  To set up the dependencies, we leverage anaconda:
+
+```
+conda env create -f environment.yml
+```
 
 ## Deployment
 
