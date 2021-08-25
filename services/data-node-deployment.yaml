@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.version: 1.22.0 (955b78124)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: data-node
+  name: data-node
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: data-node
+  strategy: {}
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert
+        kompose.version: 1.22.0 (955b78124)
+      creationTimestamp: null
+      labels:
+        io.kompose.service: data-node
+    spec:
+      containers:
+        - env:
+            - name: DB_DATABASE
+            - name: DB_DOMAIN
+              value: db
+            - name: DB_PASSWORD
+            - name: DB_PORT
+            - name: DB_PROTOCOL
+            - name: DB_USERNAME
+            - name: SERVER_DOMAIN
+            - name: SERVER_PORT
+            - name: SERVER_PROTOCOL
+          image: nlpsandbox/data-node:1.2.1
+          name: data-node
+          ports:
+            - containerPort: 8080
+          resources: {}
+      restartPolicy: Always
+status: {}
