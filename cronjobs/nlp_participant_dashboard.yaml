@@ -3,7 +3,7 @@ kind: CronJob
 metadata:
   name: nlp-participant-dashboard
 spec:
-  schedule: "0 8 * * *"
+  schedule: "*/5 * * * *"
   jobTemplate:
     spec:
       template:
@@ -15,8 +15,10 @@ spec:
             command:
               - Rscript
               - render_markdown.R
-              - --source_table_synapse_id syn23633030
-              - --destination_folder_synapse_id syn26127246
+              - --source_table_synapse_id
+              - syn23633030
+              - --destination_folder_synapse_id
+              - syn26127246
             env:
               - name: SYNAPSE_AUTH_TOKEN
                 valueFrom:
