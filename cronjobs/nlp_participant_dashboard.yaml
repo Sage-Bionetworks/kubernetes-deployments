@@ -3,7 +3,7 @@ kind: CronJob
 metadata:
   name: nlp-participant-dashboard
 spec:
-  schedule: "*/5 * * * *"
+  schedule: "*/10 * * * *"
   jobTemplate:
     spec:
       template:
