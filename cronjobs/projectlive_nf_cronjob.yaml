@@ -1,15 +1,21 @@
 apiVersion: batch/v1
 kind: CronJob
 metadata:
-  name: projectlive
+  name: projectlive-nf
 spec:
-  schedule: "0 8 * * *"
+  schedule: "*/5 * * * *"
   jobTemplate:
     spec:
       template:
         spec:
           containers:
-          - name: projectlive nf
+          - name: projectlive-nf
             image: andrewelamb/projectlive_nf_files:1.0
             imagePullPolicy: IfNotPresent
+            env:
+              - name: SYNAPSE_AUTH_TOKEN
+                valueFrom:
+                  secretKeyRef:
+                    name: tyu-syn-pat
+                    key: synapse_auth_token
           restartPolicy: OnFailure
