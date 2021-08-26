@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: nlp
+  labels:
+    name: db
+  name: db
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: db
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      namespace: nlp
+      labels:
+        name: db
+    spec:
+      containers:
+        - env:
+            - name: MONGO_INITDB_DATABASE
+              value: nlpsandbox
+            - name: MONGO_INITDB_ROOT_PASSWORD
+              value: password
+            - name: MONGO_INITDB_ROOT_USERNAME
+              value: admin
+            - name: MONGO_PASSWORD
+              value: nlpmongo
+            - name: MONGO_USERNAME
+              value: nlpmongo
+          image: sagebionetworks/mongo:4.4.4
+          name: data-node-db
+          ports:
+            - containerPort: 27017
+          resources: {}
+          volumeMounts:
+            - mountPath: /data/db
+              name: database-data
+      restartPolicy: Always
+      volumes:
+        - name: database-data
+          persistentVolumeClaim:
+            claimName: database-data
+status: {}

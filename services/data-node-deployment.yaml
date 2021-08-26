@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: nlp
+  labels:
+    name: data-node
+  name: data-node
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: data-node
+  strategy: {}
+  template:
+    metadata:
+      namespace: nlp
+      labels:
+        name: data-node
+    spec:
+      containers:
+        - env:
+            - name: DB_DATABASE
+              value: nlpsandbox
+            - name: DB_DOMAIN
+              value: db
+            - name: DB_PASSWORD
+              value: nlpmongo
+            - name: DB_PORT
+              value: "27017"
+            - name: DB_PROTOCOL
+              value: mongodb://
+            - name: DB_USERNAME
+              value: nlpmongo
+            - name: SERVER_DOMAIN
+              value: localhost
+            - name: SERVER_PORT
+              value: "8080"
+            - name: SERVER_PROTOCOL
+              value: http://
+          image: nlpsandbox/data-node:1.2.1
+          name: data-node
+          ports:
+            - containerPort: 8080
+          resources: {}
+      restartPolicy: Always
+status: {}
