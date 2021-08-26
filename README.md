@@ -19,3 +19,11 @@ conda env create -f environment.yml
     kubectl logs projectlive-nf-27164915-6h75l
     kubectl delete cronjob projectlive-nf
     ```
+
+
+- deploying services
+
+    ```
+    kubectl apply -f data-node-deployment.yaml,data-node-service.yaml,database-data-persistentvolumeclaim.yaml,db-deployment.yaml,db-service.yaml
+    kubectl expose deployment data-node --type=LoadBalancer --name=data-node-elb --namespace nlp
+    ```

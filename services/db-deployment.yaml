@@ -1,6 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  namespace: nlp
   labels:
     name: db
   name: db
@@ -13,6 +14,7 @@ spec:
     type: Recreate
   template:
     metadata:
+      namespace: nlp
       labels:
         name: db
     spec:

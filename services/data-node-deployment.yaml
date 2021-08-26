@@ -1,6 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  namespace: nlp
   labels:
     name: data-node
   name: data-node
@@ -12,6 +13,7 @@ spec:
   strategy: {}
   template:
     metadata:
+      namespace: nlp
       labels:
         name: data-node
     spec:
@@ -24,7 +26,7 @@ spec:
             - name: DB_PASSWORD
               value: nlpmongo
             - name: DB_PORT
-              value: 27017
+              value: "27017"
             - name: DB_PROTOCOL
               value: mongodb://
             - name: DB_USERNAME
@@ -32,7 +34,7 @@ spec:
             - name: SERVER_DOMAIN
               value: localhost
             - name: SERVER_PORT
-              value: 8080
+              value: "8080"
             - name: SERVER_PROTOCOL
               value: http://
           image: nlpsandbox/data-node:1.2.1
