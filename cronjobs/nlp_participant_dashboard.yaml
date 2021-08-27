@@ -10,7 +10,7 @@ spec:
         spec:
           containers:
           - name: nlp-participant-dashboard
-            image: andrewelamb/nlp_sandbox_participation_dashboard:0.2.1
+            image: nlpsandbox/participation-dashboard:0.2.0
             imagePullPolicy: IfNotPresent
             command:
               - Rscript
