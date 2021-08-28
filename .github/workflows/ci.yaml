@@ -19,7 +19,5 @@ jobs:
       - uses: actions-hub/kubectl@v1.21.2
         env:
           KUBE_CONFIG: ${{ secrets.KUBE_CONFIG }}
-
-      - uses: actions-hub/kubectl@v1.21.2
         with:
           args: apply -f cronjobs
