@@ -8,20 +8,25 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      # - name: Assume AWS role
-      #   uses: aws-actions/configure-aws-credentials@v1
-      #   with:
-      #     aws-access-key-id: ${{ secrets.CI_SERVICE_USER_ACCESS_KEY }}
-      #     aws-secret-access-key: ${{ secrets.CI_SERVICE_USER_SECRET_ACCESS_KEY }}
-      #     aws-region: us-east-1
-      #     # role-to-assume: arn:aws:iam::841415736403:role/nlp-sandbox-ci-service-account-ServiceRole-1KF7Q6FCOOQRE
-      #     role-duration-seconds: 1200
-
-      - name: Deploy
-        uses: ianbelcher/eks-kubectl-action@1.2
+      - name: Assume AWS role
+        uses: aws-actions/configure-aws-credentials@v1
         with:
-          aws_access_key_id: ${{ secrets.CI_SERVICE_USER_ACCESS_KEY }}
-          aws_secret_access_key: ${{ secrets.CI_SERVICE_USER_SECRET_ACCESS_KEY }}
-          aws_region: us-east-1
-          cluster_name: ibc
+          aws-access-key-id: ${{ secrets.CI_SERVICE_USER_ACCESS_KEY }}
+          aws-secret-access-key: ${{ secrets.CI_SERVICE_USER_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1
+          # role-to-assume: arn:aws:iam::841415736403:role/nlp-sandbox-ci-service-account-ServiceRole-1KF7Q6FCOOQRE
+          role-duration-seconds: 1200
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v1
+      # - uses: actions-hub/kubectl@v1.21.2
+      #   env:
+      #     KUBE_CONFIG: ${{ secrets.KUBE_CONFIG }}
+      #   with:
+      #     args: apply -f cronjobs
+      - name: deploy
+        uses: kodermax/kubectl-aws-eks@1.0.7
+        env:
+          KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG }}
+        with:
           args: apply -f cronjobs
