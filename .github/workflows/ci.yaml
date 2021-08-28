@@ -16,9 +16,6 @@ jobs:
           aws-region: us-east-1
           # role-to-assume: arn:aws:iam::841415736403:role/nlp-sandbox-ci-service-account-ServiceRole-1KF7Q6FCOOQRE
           role-duration-seconds: 1200
-      - name: Login to Amazon ECR
-        id: login-ecr
-        uses: aws-actions/amazon-ecr-login@v1
       # - uses: actions-hub/kubectl@v1.21.2
       #   env:
       #     KUBE_CONFIG: ${{ secrets.KUBE_CONFIG }}
