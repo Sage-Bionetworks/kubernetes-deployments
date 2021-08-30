@@ -18,4 +18,5 @@ conda env create -f environment.yml
     kubectl get pods --selector=job-name=projectlive-nf-27164915
     kubectl logs projectlive-nf-27164915-6h75l
     kubectl delete cronjob projectlive-nf
+    kubectl delete job nlp-participant-dashboard-27171840
     ```
