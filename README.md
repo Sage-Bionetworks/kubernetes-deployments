@@ -1,4 +1,4 @@
-# kubernetes_deployments
+# kubernetes-deployments
 Kubernetes deployments on `ibc` EKS cluster.  To set up the dependencies, we leverage anaconda:
 
 ```
