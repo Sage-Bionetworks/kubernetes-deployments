@@ -11,7 +11,7 @@ spec:
           containers:
           - name: nlp-participant-dashboard
             image: nlpsandbox/participation-dashboard:edge
-            imagePullPolicy: IfNotPresent
+            imagePullPolicy: Always
             command:
               - Rscript
               - render_markdown.R
