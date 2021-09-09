@@ -10,8 +10,8 @@ spec:
         spec:
           containers:
           - name: projectlive-nf
-            image: andrewelamb/projectlive_nf_files:1.0
-            imagePullPolicy: IfNotPresent
+            image: andrewelamb/projectlive_nf_files:latest
+            imagePullPolicy: Always
             env:
               - name: SYNAPSE_AUTH_TOKEN
                 valueFrom:
