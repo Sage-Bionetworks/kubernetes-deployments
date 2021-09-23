@@ -20,3 +20,14 @@ conda env create -f environment.yml
     kubectl delete cronjob projectlive-nf
     kubectl delete job nlp-participant-dashboard-27171840
     ```
+
+
+* Delete all pending pods
+
+```
+kubectl get pods | grep Pending | awk '{print $1}' | xargs kubectl delete pod
+```
+
+## Shiny proxy
+
+https://medium.com/@rohitsrmuniv/using-shinyproxy-with-kubernetes-eba5bd06230
