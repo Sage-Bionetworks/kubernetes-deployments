@@ -10,7 +10,7 @@ spec:
         spec:
           containers:
           - name: projectlive-nf
-            image: andrewelamb/projectlive_nf_files:1.1
+            image: andrewelamb/projectlive_nf_files:1.1.1
             imagePullPolicy: Always
             env:
               - name: SYNAPSE_AUTH_TOKEN
