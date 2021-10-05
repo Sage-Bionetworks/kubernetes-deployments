@@ -1,0 +1,25 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: clean-ad
+spec:
+  schedule: "0 5 * * 1"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: clean-ad
+            image: sagebionetworks/cleanad:latest
+            imagePullPolicy: Always
+            command:
+              - .cleanAD/update_table.sh
+              - ad
+              - $SYNAPSE_AUTH_TOKEN
+            env:
+              - name: SYNAPSE_AUTH_TOKEN
+                valueFrom:
+                  secretKeyRef:
+                    name: clean-ad-pat
+                    key: synapse_auth_token
+          restartPolicy: OnFailure
