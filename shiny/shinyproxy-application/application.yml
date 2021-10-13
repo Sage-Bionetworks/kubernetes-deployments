@@ -26,6 +26,11 @@ proxy:
     description: This is the basic shiny example
     container-cmd: ["R", "-e", "shiny::runApp('/home/app')"]
     container-image: thomasvyu/shiny-hello-world:latest
+  - id: hello_world_synlogin
+    display-name: Hello World Synapse Login
+    description: This is the basic shiny example
+    container-cmd: ["R", "-e", "shiny::runApp('/home/app')"]
+    container-image: thomasvyu/shiny-hello-world:syn-login
 
 logging:
   file:
