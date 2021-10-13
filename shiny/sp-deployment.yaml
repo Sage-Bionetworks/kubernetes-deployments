@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: shinyproxy
+  namespace: shiny
+spec:
+  selector:
+    matchLabels:
+      run: shinyproxy
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        run: shinyproxy
+    spec:
+      containers:
+      - name: shinyproxy
+        image: thomasvyu/shinyproxy-application:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080
+      - name: kube-proxy-sidecar
+        image: thomasvyu/kube-proxy-sidecar:0.1.0
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8001
+      # imagePullSecrets:
+      # - name: ${SecretForDockerRegistry}
