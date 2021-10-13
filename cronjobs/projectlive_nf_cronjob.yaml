@@ -16,6 +16,6 @@ spec:
               - name: SYNAPSE_AUTH_TOKEN
                 valueFrom:
                   secretKeyRef:
-                    name: tyu-syn-pat
+                    name: nf-syn-pat
                     key: synapse_auth_token
           restartPolicy: OnFailure
