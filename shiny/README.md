@@ -33,3 +33,7 @@ in the same cluster. To make the application accessible outside the cluster, a N
 	`kubectl create -f sp-service.yaml`
 
 7. Once the service and pod is up and running, you can click on External Endpoints or use kube port-forward pod command
+
+	```
+	kubectl get services --namespace shiny
+	```
