@@ -36,34 +36,38 @@ https://medium.com/@rohitsrmuniv/using-shinyproxy-with-kubernetes-eba5bd06230
 
 ## Installing airflow
 
-Instructions here: https://airflow.apache.org/docs/helm-chart/stable/index.html
+1. Instructions here: https://airflow.apache.org/docs/helm-chart/stable/index.html
 
-```
-helm repo add apache-airflow https://airflow.apache.org
-helm upgrade --install airflow apache-airflow/airflow --namespace airflow --create-namespace
-```
+    ```
+    helm repo add apache-airflow https://airflow.apache.org
+    helm upgrade --install airflow apache-airflow/airflow --namespace airflow --create-namespace
+    ```
 
-Update airflow to enable github syncing
+1. Update airflow to enable github syncing
 
-```
-helm upgrade --install airflow apache-airflow/airflow \
-    --set dags.persistence.enabled=true \
-    --set dags.gitSync.enabled=true \
-    --namespace airflow
-```
+    ```
+    helm upgrade --install airflow apache-airflow/airflow \
+        --set dags.persistence.enabled=true \
+        --set dags.gitSync.enabled=true \
+        --namespace airflow
+    ```
 
 
-Create `override-values.yaml`
-https://airflow.apache.org/docs/helm-chart/stable/manage-dags-files.html
-```
-dags:
-  gitSync:
-    enabled: true
-    repo: https://github.com/apache/airflow/tree/main/airflow
-    branch: main
-    subPath: "example_dags"
-```
+1. Create `override-values.yaml`
+https://airflow.apache.org/docs/helm-chart/stable/manage-dags-files.html.  The password can be found in "Shared-IBC-DPE-k8"
 
-```
-helm upgrade --install airflow apache-airflow/airflow -f override-values.yaml --namespace airflow
-```
+    ```
+    webserver:
+    defaultUser:
+        password: <passwordhere>
+    dags:
+    gitSync:
+        enabled: true
+        repo: https://github.com/apache/airflow/tree/main/airflow
+        branch: main
+        subPath: "example_dags"
+    ```
+
+    ```
+    helm upgrade --install airflow apache-airflow/airflow -f override-values.yaml --namespace airflow
+    ```
