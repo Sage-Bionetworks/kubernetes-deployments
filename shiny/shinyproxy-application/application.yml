@@ -1,0 +1,37 @@
+proxy:
+  port: 8080
+  authentication: none
+  # admin-groups: admins
+  # users:
+  # - name: Tom
+  #   password: Tom@123
+  #   groups: admins
+  # - name: Jon
+  #   password: Jon@123
+  #   groups: admins
+  # - name: Adam
+  #   password: Adam@123
+  # - name: Guest
+  #   password: Guest@123
+  container-backend: kubernetes
+  kubernetes:
+    internal-networking: true
+    url: http://localhost:8001
+    namespace: shiny
+    image-pull-policy: IfNotPresent
+    # image-pull-secret: ${SecretForDockerRegistry} 
+  specs:
+  - id: hello_world
+    display-name: Hello World
+    description: This is the basic shiny example
+    container-cmd: ["R", "-e", "shiny::runApp('/home/app')"]
+    container-image: thomasvyu/shiny-hello-world:latest
+  - id: hello_world_synlogin
+    display-name: Hello World Synapse Login
+    description: This is the basic shiny example
+    container-cmd: ["R", "-e", "shiny::runApp('/home/app')"]
+    container-image: thomasvyu/shiny-hello-world:syn-login
+
+logging:
+  file:
+    shinyproxy.log
