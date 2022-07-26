@@ -52,22 +52,27 @@ https://medium.com/@rohitsrmuniv/using-shinyproxy-with-kubernetes-eba5bd06230
         --namespace airflow
     ```
 
-
-1. Create `override-values.yaml`
-https://airflow.apache.org/docs/helm-chart/stable/manage-dags-files.html.  The password can be found in "Shared-IBC-DPE-k8"
+1. Follow parts of the production guide: https://airflow.apache.org/docs/helm-chart/stable/production-guide.html
 
     ```
-    webserver:
-    defaultUser:
-        password: <passwordhere>
+    kubectl create secret generic my-webserver-secret --from-literal="webserver-secret-key=$(python3 -c 'import secrets; print(secrets.token_hex(16))')" --namespace airflow
+    ```
+
+1. Updating airflow. Create `override-values.yaml`
+https://airflow.apache.org/docs/helm-chart/stable/manage-dags-files.html.
+
+    ```
     dags:
-    gitSync:
+      gitSync:
         enabled: true
         repo: https://github.com/apache/airflow/tree/main/airflow
         branch: main
         subPath: "example_dags"
+    webserverSecretKeySecretName: my-webserver-secret
     ```
 
     ```
     helm upgrade --install airflow apache-airflow/airflow -f override-values.yaml --namespace airflow
     ```
+
+1. Make sure to log into airflow and change the password. The password and site URL can be found in "Shared-IBC-DPE-k8".
