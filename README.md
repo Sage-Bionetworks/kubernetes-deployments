@@ -67,3 +67,12 @@ dags:
 ```
 helm upgrade --install airflow apache-airflow/airflow -f override-values.yaml --namespace airflow
 ```
+
+
+## Add ELK stack
+
+```
+helm repo add elastic https://Helm.elastic.co
+helm upgrade --install elastic elastic/elasticsearch --namespace elastic --create-namespace
+kubectl expose deployment hello-world --type=LoadBalancer --name=my-service
+```
