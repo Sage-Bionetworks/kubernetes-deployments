@@ -67,3 +67,24 @@ dags:
 ```
 helm upgrade --install airflow apache-airflow/airflow -f override-values.yaml --namespace airflow
 ```
+
+
+## Install Juypterhub
+
+1. Follow instructions here: https://zero-to-jupyterhub.readthedocs.io/en/stable/jupyterhub/installation.html
+1. Set up authentication via github: https://zero-to-jupyterhub.readthedocs.io/en/stable/administrator/authentication.html.  The config.yaml
+
+    ```
+    hub:
+        config:
+        GitHubOAuthenticator:
+            client_id: XXXXXXX
+            client_secret: XXXXXXX
+            oauth_callback_url: http://url_to_juypterhub/hub/oauth_callback
+            allowed_organizations:
+                - Sage-Bionetworks
+            scope:
+                - read:org
+        JupyterHub:
+            authenticator_class: github
+    ```
